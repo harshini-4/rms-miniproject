@@ -2,6 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import adminRoutes from "./routes/admin.js";
 import menuRoutes from "./routes/menu.js";
+//import orderRouter from "./routes/order.js";
+//import paymentRouter from "./routes/payment.js";
+//import feedbackRouter from "./routes/feedback.js";
+import employeeRoutes from "./routes/employee.js";
 
 dotenv.config();
 
@@ -21,8 +25,17 @@ app.get("/", (req, res) => {
 
 // Use Admin Routes
 app.use("/admin", adminRoutes);
+// Use Menu Routes
 app.use("/menu", menuRoutes);
-// Start Server
+
+// Use Order Routes
+//app.use("/order", orderRoutes);
+// Use Payment Routes
+//app.use("/payment", paymentRoutes);
+// Use Feedback Routes
+//app.use("/feedback", feedbackRoutes);
+app.use("/employee", employeeRoutes);
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
