@@ -17,8 +17,8 @@ router.get("/", (req, res) => {
 
 // ✅ 2. Add New Employee
 router.post("/add", (req, res) => {
-    const { name, phone, address, role, admin_id } = req.body;
-
+    const { name, phone, address, role } = req.body;
+    const admin_id = 1; // Assume admin_id is set (can be dynamic)
     if (!name || !phone || !role) {
         return res.status(400).json({ message: "Name, phone, and role are required" });
     }

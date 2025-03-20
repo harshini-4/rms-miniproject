@@ -5,8 +5,8 @@ const router = express.Router();
 
 // 🟢 Add a menu item with optional tags
 router.post("/add", (req, res) => {
-    const { name, description, price, menu_type, admin_id, tags } = req.body;
-
+    const { name, description, price, menu_type, tags } = req.body;
+    const admin_id = 1; // Assume admin_id is set (can be dynamic)
     // Step 1: Insert the menu item
     const sql = "INSERT INTO MENU (name, description, price, menu_type, admin_id) VALUES (?, ?, ?, ?, ?)";
     db.query(sql, [name, description, price, menu_type, admin_id], (err, result) => {

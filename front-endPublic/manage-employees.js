@@ -36,6 +36,15 @@ document.getElementById("employeeForm").addEventListener("submit", async functio
     const role = document.getElementById("role").value;
 
     const employeeData = { name, phone, address, role, admin_id: 1 }; // admin_id should be dynamic
+    /*   // Assuming admin_id is passed in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const adminId = urlParams.get('admin_id'); // Extract admin_id from the URL
+    if (adminId) {
+        const employeeData = { name, phone, address, role, admin_id: adminId };
+    } else {
+        alert("Admin not logged in.");
+    }
+    */
 
     const method = id ? "PUT" : "POST";
     const url = id ? `${API_URL}/update/${id}` : `${API_URL}/add`;
