@@ -12,21 +12,33 @@
         <div class="board">
             <div id="border">
                 <div class="modify">
-                    <a href="file..//">
-                        <button type="Modify Menu">Modify Menu</button>
+                    <a href="../menu/menu.html">
+                        <button>Modify Menu</button>
                     </a>
                 </div>
                 <div class="manage">
-                    <a href="file..//">
-                        <button type="Manage Employee">Manage Employee</button>
+                    <a href="../front-endPublic/manage-employees.html">
+                        <button>Manage Employee</button>
                     </a>
                 </div>
                 <div class="logout">
-                    <a href="file..//">
-                        <button type="logout">Logout</button>
-                    </a>
+                    <button id="logoutButton">Logout</button>
                 </div>
             </div>
         </div>
+
+        <script>
+            // Redirect if not logged in
+            if (localStorage.getItem("adminLoggedIn") !== "true") {
+                alert("Unauthorized! Please log in first.");
+                window.location.href = "../login/login.html"; // Redirect to login
+            }
+    
+            // Logout
+            document.getElementById("logoutButton").addEventListener("click", () => {
+                localStorage.removeItem("adminLoggedIn");
+                window.location.href = "../login/login.html"; // Redirect to login
+            });
+        </script>
     </body>
 </html>

@@ -13,7 +13,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: "http://127.0.0.1:3000" }));
+app.use(cors({
+    origin: "http://127.0.0.1:3000",
+    credentials: true
+}));
+
+
 // Middleware to parse form data (x-www-form-urlencoded)
 app.use(express.urlencoded({ extended: true }));
 
