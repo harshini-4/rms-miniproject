@@ -1,0 +1,26 @@
+h1{
+    background-color:blueviolet;
+    font-size: 80px;
+    color:white;
+    padding: 20px;
+    border: solid black;
+    border-width: 4px;
+    margin:0;
+    text-align: left;
+}
+.jar{
+    font-size: 30px;
+    margin: 0;
+    background-color: blueviolet;
+    text-align: right;
+    color:solid black;
+    font-weight: bold;
+    
+
+}
+
+.column{
+    float: left;
+    width: 100%;
+    padding: 2px;
+}

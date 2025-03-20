@@ -1,0 +1,39 @@
+.board{
+    padding: 20px;
+    margin: 30px;
+    background-color:rgb(203, 31, 15);
+    width: 75%;
+    height: 200px;
+    
+}
+.modify{
+    padding:0;
+    margin: 2px;
+    color:black;
+    font-weight: bolder;
+    text-align: center;
+}
+.manage{
+    padding:0;
+    margin:20px;
+    color:black;
+    font-weight: bolder;
+    text-align: center;
+}
+.logout{
+    padding:0;
+    margin: 2px;
+    color:black;
+    font-weight: bolder;
+    text-align: center;
+}
+body{
+    background: url(../login/blur.jpg);
+}
+#border{
+    background-color:antiquewhite;
+    padding: 40px;
+    margin: 10px;
+    height: 100px;
+
+}
