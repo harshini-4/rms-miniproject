@@ -1,44 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Dashboard</title>
-        <link 
-             rel="stylesheet"
-             href="./style.css"
-        />
-    </head>
-    <body>
-        <div class="board">
-            <div id="border">
-                <div class="modify">
-                    <a href="../front-endPublic/modify-menu.html">
-                        <button>Modify Menu</button>
-                    </a>
-                </div>
-                <div class="manage">
-                    <a href="../front-endPublic/manage-employees.html">
-                        <button>Manage Employee</button>
-                    </a>
-                </div>
-                <div class="logout">
-                    <button id="logoutButton">Logout</button>
-                </div>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="board">
+        <div id="border">
+            <div class="modify">
+                <a href="../front-endPublic/modify-menu.html">
+                    <button>Modify Menu</button>
+                </a>
+            </div>
+            <div class="manage">
+                <a href="../front-endPublic/manage-employees.html">
+                    <button>Manage Employee</button>
+                </a>
+            </div>
+            <div class="orders">
+                <button id="viewOrdersButton">View Orders</button>
+            </div>
+            <div class="logout">
+                <button id="logoutButton">Logout</button>
             </div>
         </div>
 
-        <script>
-            // Redirect if not logged in
-            if (localStorage.getItem("adminLoggedIn") !== "true") {
-                alert("Unauthorized! Please log in first.");
-                window.location.href = "../login/login.html"; // Redirect to login
-            }
-    
-            // Logout
-            document.getElementById("logoutButton").addEventListener("click", () => {
-                localStorage.removeItem("adminLoggedIn");
-                window.location.href = "../login/login.html"; // Redirect to login
-            });
-        </script>
-    </body>
+        <!-- Orders Table (Hidden Initially) -->
+        <div id="ordersContainer" style="display: none;">
+            <h2>Orders</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Order No</th>
+                        <th>Order Type</th>
+                        <th>Total Amount</th>
+                        <th>Order Date-Time</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="ordersTableBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Order Details Section -->
+        <div id="orderDetailsContainer" style="display: none;">
+            <h2>Order Details</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="orderDetailsTableBody"></tbody>
+            </table>
+            <p><strong>Payment Status:</strong> <span id="paymentStatus"></span></p>
+            <p><strong>Feedback Stars:</strong> <span id="feedbackStars"></span></p>
+        </div>
+    </div>
+
+    <script src="./dashboard.js"></script>
+</body>
+
 </html>

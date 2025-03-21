@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Restaurant Management</title>
-        <link
-            rel="StyleSheet"
-            href="style.css"
-        />
-    </head>
-    <body>
-        <div class="container">
-            <h1>Truffelzz   
-            <div class="jar">
-                <a href="../login/login.html">
-                    <button type="button">Login</button>
-                </a>
-                <a href="../menu/menu.html">
-                    <button type="Dine in">Dine In</button>
-                </a>
-                <a href="../menu/menu.html">
-                    <button type="Takeaway">Takeway</button>
-                </a>
-            </div>
-            </h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truffelzz - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Truffelzz</h1>
+        <div class="jar">
+            <button type="button" onclick="redirectToLogin()">Login</button>
+            <button type="button" onclick="selectOrderType('Dine-in')">Dine In</button>
+            <button type="button" onclick="selectOrderType('Takeaway')">Takeaway</button>
         </div>
-        <div class="row">
-            <div class="column">
-                <a href="../login.html">
-                    <img src="./photo-collage.png.png" alt="cold coffee, pizza, pasta" style="width:100% "/>
-                </a>
-                    
-            </div>
-        </div>
+    </div>
 
-            
-    </body>
+    <div class="row">
+        <div class="column">
+            <a href="../login.html">
+                <img src="./photo-collage.png" alt="Cold coffee, pizza, pasta" style="width:100%;" />
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function redirectToLogin() {
+            window.location.href = "../login/login.html";
+        }
+        function selectOrderType(orderType) {
+            localStorage.setItem("orderType", orderType); // Store order type
+            window.location.href = "../menu/menu.html"; // Redirect to menu page
+        }
+    </script>
+</body>
 </html>

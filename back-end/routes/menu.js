@@ -36,17 +36,33 @@ router.post("/add", (req, res) => {
 // 🔵 Get all menu items with tags
 router.get("/", (req, res) => {
     const sql = `
-        SELECT MENU.item_no, MENU.name, MENU.description, MENU.price, MENU.menu_type, GROUP_CONCAT(MENU_TAGS.tag) AS tags
+        SELECT 
+            menu_type, 
+            MENU.item_no, 
+            MENU.name, 
+            MENU.description, 
+            MENU.price, 
+            IFNULL(GROUP_CONCAT(MENU_TAGS.tag SEPARATOR ', '), '') AS tags
         FROM MENU
         LEFT JOIN MENU_TAGS ON MENU.item_no = MENU_TAGS.item_no
-        GROUP BY MENU.item_no;
+        GROUP BY menu_type, MENU.item_no;
     `;
-    
+
     db.query(sql, (err, results) => {
         if (err) {
-            return res.status(500).json({ error: "Failed to fetch menu items with tags" });
+            return res.status(500).json({ error: "Failed to fetch menu items" });
         }
-        res.json(results);
+
+        // Convert flat results into grouped format (group by menu_type)
+        const groupedMenu = {};
+        results.forEach(row => {
+            if (!groupedMenu[row.menu_type]) {
+                groupedMenu[row.menu_type] = [];
+            }
+            groupedMenu[row.menu_type].push(row);
+        });
+
+        res.json(groupedMenu);
     });
 });
 

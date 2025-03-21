@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import adminRoutes from "./routes/admin.js";
 import menuRoutes from "./routes/menu.js";
-//import orderRouter from "./routes/order.js";
+import orderRoutes from "./routes/order.js";
 //import paymentRouter from "./routes/payment.js";
 //import feedbackRouter from "./routes/feedback.js";
 import employeeRoutes from "./routes/employee.js";
@@ -34,9 +34,8 @@ app.get("/", (req, res) => {
 app.use("/admin", adminRoutes);
 // Use Menu Routes
 app.use("/menu", menuRoutes);
-
 // Use Order Routes
-//app.use("/order", orderRoutes);
+app.use("/order", orderRoutes);
 // Use Payment Routes
 //app.use("/payment", paymentRoutes);
 // Use Feedback Routes

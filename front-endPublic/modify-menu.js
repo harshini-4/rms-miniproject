@@ -3,26 +3,29 @@ const API_URL = "http://localhost:5000/menu"; // API URL for menu routes
 // Fetch and display menu items
 async function fetchMenuItems() {
     const response = await fetch(API_URL);
-    const menuItems = await response.json();
+    const menuData = await response.json();
     const tableBody = document.getElementById("menuTable");
 
     tableBody.innerHTML = ""; // Clear table before inserting new rows
 
-    menuItems.forEach(item => {
-        tableBody.innerHTML += `
-            <tr>
-                <td>${item.item_no}</td>
-                <td>${item.name}</td>
-                <td>${item.description || "N/A"}</td>
-                <td>${item.price}</td>
-                <td>${item.menu_type}</td>
-                <td>${item.tags || "N/A"}</td>
-                <td>
-                    <button onclick="editMenuItem(${item.item_no}, '${item.name}', '${item.description}', ${item.price}, '${item.menu_type}', '${item.tags}')">Edit</button>
-                    <button onclick="deleteMenuItem(${item.item_no})">Delete</button>
-                </td>
-            </tr>
-        `;
+    // Loop through grouped menu categories
+    Object.keys(menuData).forEach(category => {
+        menuData[category].forEach(item => {
+            tableBody.innerHTML += `
+                <tr>
+                    <td>${item.item_no}</td>
+                    <td>${item.name}</td>
+                    <td>${item.description || "N/A"}</td>
+                    <td>${item.price}</td>
+                    <td>${category}</td> <!-- Use category instead of item.menu_type -->
+                    <td>${item.tags || "N/A"}</td>
+                    <td>
+                        <button onclick="editMenuItem(${item.item_no}, '${item.name}', '${item.description}', ${item.price}, '${category}', '${item.tags}')">Edit</button>
+                        <button onclick="deleteMenuItem(${item.item_no})">Delete</button>
+                    </td>
+                </tr>
+            `;
+        });
     });
 }
 
@@ -44,7 +47,7 @@ document.getElementById("menuForm").addEventListener("submit", async function (e
         tagsArray = tags.split(",").map(tag => tag.trim()).filter(tag => tag !== "");
     }
     
-    const menuData = { name, description, price, menu_type: menuType, admin_id: 1, tags:tagsArray };
+    const menuData = { name, description, price, menu_type: menuType, admin_id: 1, tags: tagsArray };
 
     const method = itemNo ? "PUT" : "POST";
     const url = itemNo ? `${API_URL}/update/${itemNo}` : `${API_URL}/add`;

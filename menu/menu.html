@@ -4,21 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu with Quantity</title>
+    <title>Menu</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <div class="menu">
         <h2>Menu</h2>
-        <div id="menu-items">
-            <!-- Menu items will be populated here by JavaScript -->
-        </div>
-        <div id="next">
-            <button type="button" onclick="proceedToOrder()">Proceed</button>
-        </div>
-    </div>
+        <div class="menu-item">
+        <!--<p id="order-type-display"></p>  Show order type (Dine-in/Takeaway)-->
 
+            <div id="menu-items">
+                <!-- Menu items will be dynamically loaded -->
+            </div>
+        </div>
+        <h3>Total Amount: Rs<span id="total-amount">0.00</span></h3>
+        <button onclick="proceedToOrder()">Proceed</button>
+    </div>
     <script src="./menu.js"></script>
 </body>
 
