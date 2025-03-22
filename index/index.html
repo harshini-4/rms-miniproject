@@ -10,6 +10,7 @@
     <div class="container">
         <h1>Truffelzz</h1>
         <div class="jar">
+            <button type="button" onclick="redirectToRating()">Rate your order</button>
             <button type="button" onclick="redirectToLogin()">Login</button>
             <button type="button" onclick="selectOrderType('Dine-in')">Dine In</button>
             <button type="button" onclick="selectOrderType('Takeaway')">Takeaway</button>
@@ -25,6 +26,9 @@
     </div>
 
     <script>
+        function redirectToRating(){
+            window.location.href = "../feedback/rating.html";
+        }
         function redirectToLogin() {
             window.location.href = "../login/login.html";
         }

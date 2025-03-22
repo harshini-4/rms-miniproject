@@ -23,6 +23,9 @@
             <div class="orders">
                 <button id="viewOrdersButton">View Orders</button>
             </div>
+            <div class="revenue">
+                <button id="viewRevenueButton">View Today's Revenue</button>
+            </div>
             <div class="logout">
                 <button id="logoutButton">Logout</button>
             </div>
@@ -59,8 +62,43 @@
                 </thead>
                 <tbody id="orderDetailsTableBody"></tbody>
             </table>
-            <p><strong>Payment Status:</strong> <span id="paymentStatus"></span></p>
+
+            <!-- Extra Charges Message for Takeaway -->
+            <p id="extraChargeMessage" style="color: red; font-weight: bold;"></p>
+
+            <h3>Payment Details</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>Method</th>
+                        <th>UPI ID</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="paymentDetailsTableBody"></tbody>
+            </table>
+
             <p><strong>Feedback Stars:</strong> <span id="feedbackStars"></span></p>
+        </div>
+
+        <!-- Revenue Section (Hidden Initially) -->
+        <div id="revenueContainer" style="display: none;">
+            <h2>Today's Revenue</h2>
+            <p><strong>Total Revenue: </strong>Rs <span id="todayRevenue">0</span></p>
+            <h3>Completed Orders</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Order No</th>
+                        <th>Order Type</th>
+                        <th>Total Amount</th>
+                        <th>Order Date-Time</th>
+                    </tr>
+                </thead>
+                <tbody id="revenueOrdersTableBody"></tbody>
+            </table>
         </div>
     </div>
 

@@ -23,7 +23,8 @@ router.get("/fetch-order-details/:orderId", (req, res) => {
     const sql = `
         SELECT 
             O.order_no, O.order_status, O.order_type, O.total_amount, O.order_date, OD.item_no, M.name, OD.quantity, M.price,
-            P.payment_status,
+            P.payment_id, P.payment_status, P.payment_method, P.payment_time, 
+            CASE WHEN P.payment_method = 'UPI' THEN P.upi_id ELSE NULL END AS upi_id, 
             F.stars AS feedback_stars
         FROM ORDERS O
         JOIN ORDER_DETAILS OD ON O.order_no = OD.order_no
@@ -171,6 +172,22 @@ router.put("/cancel-order/:orderId", (req, res) => {
             return res.status(400).json({ error: "Order cannot be cancelled" });
         }
         res.json({ message: "Order cancelled" });
+    });
+});
+
+// Route to fetch daily revenue and completed orders
+router.get("/daily-revenue", (req, res) => {
+    db.query("CALL GetDailyRevenue()", (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: "Internal server error while fetching daily revenue." });
+        }
+
+        // Extracting results (Stored procedures return multiple result sets)
+        const todayRevenue = results[0][0].TodayRevenue || 0;  // First result set (Total revenue)
+        const completedOrders = results[1];  // Second result set (Completed orders)
+
+        res.status(200).json({ todayRevenue, completedOrders });
     });
 });
 

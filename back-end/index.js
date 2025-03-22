@@ -4,8 +4,8 @@ import cors from "cors";
 import adminRoutes from "./routes/admin.js";
 import menuRoutes from "./routes/menu.js";
 import orderRoutes from "./routes/order.js";
-//import paymentRouter from "./routes/payment.js";
-//import feedbackRouter from "./routes/feedback.js";
+import paymentRoutes from "./routes/payment.js";
+import feedbackRoutes from "./routes/feedback.js";
 import employeeRoutes from "./routes/employee.js";
 
 dotenv.config();
@@ -37,9 +37,9 @@ app.use("/menu", menuRoutes);
 // Use Order Routes
 app.use("/order", orderRoutes);
 // Use Payment Routes
-//app.use("/payment", paymentRoutes);
+app.use("/payment", paymentRoutes);
 // Use Feedback Routes
-//app.use("/feedback", feedbackRoutes);
+app.use("/feedback", feedbackRoutes);
 app.use("/employee", employeeRoutes);
 
 app.listen(PORT, () => {

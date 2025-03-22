@@ -84,7 +84,7 @@
                     alert("Order confirmed! Proceeding to payment.");
                     // Optionally, you can store the updated total amount in localStorage for use on the payment page
                     localStorage.setItem("updatedTotalAmount", data.updatedTotalAmount);
-                    window.location.href = "../payment/payment-page.html"; // Redirect to payment page
+                    window.location.href = "../payment/payment.html"; // Redirect to payment page
                 } else {
                     alert(data.error || "Failed to confirm the order.");
                 }
