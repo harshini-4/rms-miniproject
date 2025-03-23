@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Truffelzz - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Truffelzz</h1>
         <div class="jar">
             <button type="button" onclick="redirectToRating()">Rate your order</button>
-            <button type="button" onclick="redirectToLogin()">Login</button>
+            <div id="adminLogin" style="display: none;">
+                <button type="button" onclick="redirectToLogin()">Login</button>
+            </div>
             <button type="button" onclick="selectOrderType('Dine-in')">Dine In</button>
             <button type="button" onclick="selectOrderType('Takeaway')">Takeaway</button>
+
         </div>
     </div>
 
@@ -26,7 +31,7 @@
     </div>
 
     <script>
-        function redirectToRating(){
+        function redirectToRating() {
             window.location.href = "../feedback/rating.html";
         }
         function redirectToLogin() {
@@ -36,6 +41,19 @@
             localStorage.setItem("orderType", orderType); // Store order type
             window.location.href = "../menu/menu.html"; // Redirect to menu page
         }
+
+        // Listen for "Ctrl + Shift + L" to reveal the admin login button
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.shiftKey && event.key === "L") {
+                let adminLogin = document.getElementById("adminLogin");
+                if (adminLogin.style.display === "none") {
+                    adminLogin.style.display = "block"; // Show login button
+                } else {
+                    adminLogin.style.display = "none";  // Hide login button again
+                }
+            }
+        });
     </script>
 </body>
+
 </html>

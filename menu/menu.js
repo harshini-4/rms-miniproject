@@ -5,9 +5,8 @@ async function fetchMenuItems() {
     try {
         const response = await fetch("http://localhost:5000/menu/");
         const data = await response.json();
-
         const menuItemsContainer = document.getElementById("menu-items");
-        menuItemsContainer.innerHTML = ''; // Clear previous menu items
+        menuItemsContainer.innerHTML = ''; 
 
         Object.keys(data).forEach(category => {
             const categoryDiv = document.createElement("div");
@@ -23,14 +22,15 @@ async function fetchMenuItems() {
             data[category].forEach(item => {
                 const menuItemDiv = document.createElement("div");
                 menuItemDiv.classList.add("menu-item");
+                
+                menuItemDiv.setAttribute("data-item_no", item.item_no);
+                menuItemDiv.setAttribute("data-name", item.name);
 
                 menuItemDiv.innerHTML = `
-                    <div class="menu-details" data-name="${item.name}" data-item_no="${item.item_no}">
-                        <span class="item-name">${item.name}</span>
-                        <span class="item-description">${item.description}</span>
-                        <span class="item-price">Rs ${item.price}</span>
-                        <span class="item-tags">${item.tags}</span>
-                    </div>
+                    <span class="item-no">${item.item_no}</span>
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-description">${item.description}</span>
+                    <span class="item-price">Rs ${item.price}</span>
                     <div class="quantity">
                         <button onclick="decreaseQuantity('${item.item_no}', ${item.price})">-</button>
                         <span id="${item.item_no}-qty">0</span>
