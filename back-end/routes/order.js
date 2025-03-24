@@ -55,7 +55,7 @@ router.post("/place-order", (req, res) => {
 
     let totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     if (orderType === "Takeaway") {
-        totalAmount += 5.00;
+        totalAmount += 15.00;
     }
 
     // 1️⃣ Call PlaceOrder procedure
@@ -172,6 +172,19 @@ router.put("/cancel-order/:orderId", (req, res) => {
             return res.status(400).json({ error: "Order cannot be cancelled" });
         }
         res.json({ message: "Order cancelled" });
+    });
+});
+
+// Fetch All Pending Orders (For Menu Page)
+router.get("/fetch-pending-orders", (req, res) => {
+    const sql = "SELECT * FROM ORDERS WHERE order_status = 'Pending' ORDER BY order_date DESC";
+
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error("Error fetching pending orders:", err);
+            return res.status(500).json({ error: "Failed to fetch pending orders" });
+        }
+        res.json(results);
     });
 });
 

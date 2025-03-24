@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Summary - Truffelzz</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -19,6 +18,7 @@
         <div class="order-total">
             <p>Total: Rs <span id="total-amount">0.00</span></p>
             <p id="additional-charges"></p>
+            <p><strong>Final Total: Rs <span id="final-total">0.00</span></strong></p>
         </div>
 
         <div class="actions">
@@ -37,6 +37,7 @@
             const orderSummaryContainer = document.getElementById("order-summary");
             const totalAmountElement = document.getElementById("total-amount");
             const additionalChargesElement = document.getElementById("additional-charges");
+            const finalTotalElement = document.getElementById("final-total");
 
             let totalAmount = 0;
             let additionalCharges = 0;
@@ -54,13 +55,18 @@
                 orderSummaryContainer.appendChild(itemDiv);
             });
 
+            // Display additional charges for takeaway if applicable
             if (orderType === "Takeaway") {
                 additionalCharges = 15.00; // Additional charge for takeaway
                 additionalChargesElement.textContent = `Additional Charges (Takeaway): Rs ${additionalCharges.toFixed(2)}`;
                 totalAmount += additionalCharges;
+            } else {
+                additionalChargesElement.textContent = ''; // Hide additional charges if not takeaway
             }
 
+            // Update the total and final total amount
             totalAmountElement.textContent = totalAmount.toFixed(2);
+            finalTotalElement.textContent = totalAmount.toFixed(2); // Final Total (with charges if any)
         }
 
         // Function to confirm the order
